@@ -1,0 +1,142 @@
+# =============================================================================
+# FinServe Platform — .gitignore
+# Regra: o repositório contém só o projeto. Material pessoal, de vaga/entrevista,
+# brainstorm, rascunhos de IA, bancos locais e artefatos de build ficam de fora.
+# =============================================================================
+
+# --- Material pessoal / interno (NUNCA versionar) ----------------------------
+_private/
+_archive/
+_local/
+_scratch/
+scratch/
+scratchpad/
+
+# vagas, entrevistas, carreira, brainstorm, adendos de conversa
+vaga*
+vagas*
+*-vaga-*
+*_vaga_*
+*vaga*.md
+*vagas*.md
+job-*
+jobs/
+*job-description*
+entrevista*
+*entrevista*.md
+*interview*.md
+CAREER_FIT*.md
+PORTFOLIO_PITCH*.md
+brainstorm*
+*brainstorm*.md
+ideias*
+rascunho*
+rascunhos/
+adendo*
+addendum*
+conversa*
+chat-*
+*_conversa_*
+notas-pessoais*
+Sem título*
+Sem titulo*
+Untitled*
+
+# --- Material interno de IA (prompts, dumps, planos, memória) ----------------
+.claude/
+.aiox/
+.aiox-core/
+.deepeval/
+.planning/
+.cursor/
+.windsurf/
+.codex/
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+PROMPT_*
+*prompt_mestre*
+*_Prompt_*
+*.prompt.md
+*.transcript*
+*.chatlog*
+context-dump*
+memory/
+
+# --- Segredos e credenciais --------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*credentials*.json
+secrets/
+*.secret
+
+# --- Banco local e dados gerados --------------------------------------------
+# (snapshots oficiais do Banco Central em data/snapshots/ SÃO versionados)
+data/*.sqlite3
+data/*.sqlite3-*
+data/*.db
+data/*.db-*
+*.sqlite
+*.sqlite3
+*.sqlite3-journal
+*.sqlite3-wal
+*.sqlite3-shm
+!data/snapshots/
+!data/snapshots/*.json
+
+# --- Python ------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# --- Node (o projeto não usa; evita lixo se alguém instalar) ------------------
+node_modules/
+package-lock.json
+npm-debug.log*
+
+# --- Binários e pacotes soltos ----------------------------------------------
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+
+# --- Capturas de tela soltas (as de documentação ficam em docs/img/) ---------
+/*.png
+/*.jpg
+/*.jpeg
+!docs/images/**/*.png
+
+# --- Logs e temporários ------------------------------------------------------
+*.log
+*.tmp
+*.bak
+*.orig
+*.swp
+tmp/
+temp/
+
+# --- SO / editor -------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.code-workspace

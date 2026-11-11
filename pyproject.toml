@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "finserve-platform"
+version = "2.0.0"
+description = "Plataforma modular de experiência digital financeira: Content Studio com compliance, analytics de campanhas, dados reais do Banco Central, simuladores e dashkit reutilizável."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.110,<1",
+    "uvicorn>=0.27,<1",
+    "pydantic>=2.5,<3",
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "httpx>=0.27"]
+
+[project.scripts]
+finserve = "finserve.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"finserve.modules.platform" = ["*.sql"]
+"finserve.modules.experience" = ["*.sql", "*.yaml"]
+"finserve.modules.analytics" = ["*.sql"]
+"finserve.modules.market" = ["*.sql"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q -p no:cacheprovider"

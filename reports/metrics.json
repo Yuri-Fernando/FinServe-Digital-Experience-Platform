@@ -1,0 +1,587 @@
+{
+  "generated_at": "2026-11-11T16:42:07+00:00",
+  "version": "2.0.0",
+  "reference_date": "2026-11-10",
+  "modules": [
+    "platform",
+    "experience",
+    "analytics",
+    "market"
+  ],
+  "compliance_rules": 7,
+  "datasets": [
+    {
+      "id": "experience.content",
+      "module": "experience",
+      "title": "Componentes editoriais e revisões",
+      "kind": "synthetic",
+      "source": "Texto institucional fictício escrito para a demonstração",
+      "source_url": null,
+      "retrieved_at": null,
+      "rows": 8,
+      "note": "Tokens {{selic_meta}} etc. são resolvidos na entrega com dados reais do módulo market."
+    },
+    {
+      "id": "analytics.campaign_facts",
+      "module": "analytics",
+      "title": "Fatos diários de campanhas (8 campanhas × 120 dias)",
+      "kind": "synthetic",
+      "source": "Gerador determinístico (seed 32593) com 3 anomalias injetadas",
+      "source_url": null,
+      "retrieved_at": null,
+      "rows": 960,
+      "note": "Receita atribuída e Core Web Vitals são ilustrativos. Ver docs/DATA_CARD.md."
+    },
+    {
+      "id": "analytics.ab_tests",
+      "module": "analytics",
+      "title": "Experimentos A/B",
+      "kind": "synthetic",
+      "source": "Valores fixos no seed; estatística calculada em tempo de consulta",
+      "source_url": null,
+      "retrieved_at": null,
+      "rows": 3,
+      "note": "Um vencedor, um inconclusivo, um com amostra insuficiente."
+    },
+    {
+      "id": "market.sgs",
+      "module": "market",
+      "title": "Séries macro e crédito (SGS)",
+      "kind": "real",
+      "source": "Banco Central do Brasil — SGS",
+      "source_url": "https://dadosabertos.bcb.gov.br/",
+      "retrieved_at": "2026-11-10T20:34:11+00:00",
+      "rows": 1187,
+      "note": "Meta Selic, CDI, IPCA, IGP-M, dólar e inadimplência. Pontos futuros são descartados."
+    },
+    {
+      "id": "market.focus",
+      "module": "market",
+      "title": "Expectativas de mercado (Focus)",
+      "kind": "real",
+      "source": "Banco Central do Brasil — Olinda/Expectativas",
+      "source_url": "https://dadosabertos.bcb.gov.br/dataset/expectativas-mercado",
+      "retrieved_at": "2026-11-10T20:34:11+00:00",
+      "rows": 560,
+      "note": "Mediana de Selic, IPCA, câmbio e PIB para o ano corrente e o seguinte."
+    },
+    {
+      "id": "market.simulations",
+      "module": "market",
+      "title": "Simulações de investimento e crédito",
+      "kind": "derived",
+      "source": "Calculadoras determinísticas sobre CDI/Selic/IPCA reais",
+      "source_url": null,
+      "retrieved_at": "2026-11-10T20:34:11+00:00",
+      "rows": null,
+      "note": "Educacional. Premissas listadas em cada resposta (campo assumptions)."
+    }
+  ],
+  "market": {
+    "cards": {
+      "selic_meta": {
+        "label": "Meta Selic",
+        "value": 13.75,
+        "unit": "% a.a.",
+        "as_of": "2026-11-10",
+        "change": -0.25,
+        "kind": "real"
+      },
+      "cdi_anual": {
+        "label": "CDI (a.a.)",
+        "value": 13.65,
+        "unit": "% a.a.",
+        "as_of": "2026-11-09",
+        "change": -0.25,
+        "kind": "real"
+      },
+      "usd_brl": {
+        "label": "Dólar comercial",
+        "value": 5.584,
+        "unit": "R$",
+        "as_of": "2026-11-10",
+        "change": 11.92,
+        "kind": "real"
+      },
+      "inadimplencia_pf": {
+        "label": "Inadimplência PF (>90d)",
+        "value": 5.99,
+        "unit": "%",
+        "as_of": "2026-09-01",
+        "change": -0.05,
+        "kind": "real"
+      },
+      "ipca_12m": {
+        "label": "IPCA 12 meses",
+        "value": 4.58,
+        "unit": "%",
+        "as_of": "2026-09-01",
+        "change": -0.06,
+        "kind": "derived"
+      }
+    },
+    "data_retrieved_at": "2026-11-10T20:34:11+00:00",
+    "focus": [
+      {
+        "indicator": "Selic",
+        "reference_year": "2026",
+        "obs_date": "2026-11-06",
+        "median": 13.75,
+        "mean": 13.6042,
+        "min": 13.25,
+        "max": 14.0,
+        "respondents": 144
+      },
+      {
+        "indicator": "Selic",
+        "reference_year": "2027",
+        "obs_date": "2026-11-06",
+        "median": 12.5,
+        "mean": 12.5538,
+        "min": 10.25,
+        "max": 15.0,
+        "respondents": 144
+      },
+      {
+        "indicator": "IPCA",
+        "reference_year": "2026",
+        "obs_date": "2026-11-06",
+        "median": 5.2195,
+        "mean": 5.2131,
+        "min": 4.9102,
+        "max": 5.9168,
+        "respondents": 146
+      },
+      {
+        "indicator": "IPCA",
+        "reference_year": "2027",
+        "obs_date": "2026-11-06",
+        "median": 4.9005,
+        "mean": 4.8664,
+        "min": 3.2483,
+        "max": 6.46,
+        "respondents": 146
+      },
+      {
+        "indicator": "Câmbio",
+        "reference_year": "2026",
+        "obs_date": "2026-11-06",
+        "median": 5.35,
+        "mean": 5.3343,
+        "min": 4.9,
+        "max": 6.0,
+        "respondents": 122
+      },
+      {
+        "indicator": "Câmbio",
+        "reference_year": "2027",
+        "obs_date": "2026-11-06",
+        "median": 5.4,
+        "mean": 5.3747,
+        "min": 4.7,
+        "max": 6.0,
+        "respondents": 121
+      },
+      {
+        "indicator": "PIB Total",
+        "reference_year": "2026",
+        "obs_date": "2026-11-06",
+        "median": 1.7546,
+        "mean": 1.7403,
+        "min": 1.0,
+        "max": 2.2825,
+        "respondents": 118
+      },
+      {
+        "indicator": "PIB Total",
+        "reference_year": "2027",
+        "obs_date": "2026-11-06",
+        "median": 1.1513,
+        "mean": 1.1061,
+        "min": -0.2198,
+        "max": 2.3755,
+        "respondents": 117
+      }
+    ]
+  },
+  "simulations": {
+    "investment": {
+      "inputs": {
+        "amount": 10000,
+        "months": 12,
+        "cdi_aa": 13.65,
+        "selic_meta": 13.75,
+        "pct_cdb": 100.0,
+        "pct_lci": 90.0,
+        "ipca_12m": 4.58
+      },
+      "products": [
+        {
+          "label": "LCI/LCA 90% do CDI",
+          "net_final": 11220.54,
+          "net_gain": 1220.54,
+          "net_annual_pct": 12.205,
+          "ir": 0.0,
+          "real_return_pct": 7.291
+        },
+        {
+          "label": "CDB 100% do CDI",
+          "net_final": 11126.13,
+          "net_gain": 1126.13,
+          "net_annual_pct": 11.261,
+          "ir": 238.88,
+          "real_return_pct": 6.389
+        },
+        {
+          "label": "Tesouro Selic",
+          "net_final": 11107.37,
+          "net_gain": 1107.37,
+          "net_annual_pct": 11.074,
+          "ir": 234.9,
+          "real_return_pct": 6.209
+        },
+        {
+          "label": "Poupança",
+          "net_final": 10616.78,
+          "net_gain": 616.78,
+          "net_annual_pct": 6.168,
+          "ir": 0.0,
+          "real_return_pct": 1.518
+        }
+      ]
+    },
+    "loan": {
+      "inputs": {
+        "principal": 10000,
+        "months": 24,
+        "rate_monthly_pct": 2.5,
+        "rate_annual_pct": 34.489,
+        "system": "price",
+        "upfront_fee": 0.0
+      },
+      "summary": {
+        "first_payment": 559.13,
+        "last_payment": 559.13,
+        "total_paid": 13419.12,
+        "total_interest": 3419.09,
+        "cost_over_principal_pct": 34.19,
+        "cet_monthly_pct": 2.5,
+        "cet_annual_pct": 34.489
+      }
+    }
+  },
+  "analytics_30d": {
+    "summary": {
+      "impressions": 1735690,
+      "clicks": 45385,
+      "leads": 4010,
+      "approvals": 1130,
+      "sessions": 50398,
+      "spend": 106007.78,
+      "revenue": 406340.76,
+      "ctr_pct": 2.61,
+      "conversion_pct": 8.84,
+      "approval_pct": 28.18,
+      "cpl": 26.44,
+      "roas": 3.83
+    },
+    "delta_pct": {
+      "sessions": 14.7,
+      "clicks": 14.4,
+      "leads": 13.2,
+      "revenue": 14.5,
+      "spend": 15.1,
+      "ctr_pct": 8.7,
+      "conversion_pct": -1.0,
+      "cpl": 1.7,
+      "roas": -0.5
+    },
+    "web_vitals": [
+      {
+        "id": "lcp",
+        "name": "Largest Contentful Paint",
+        "unit": "ms",
+        "p75": 2590.0,
+        "status": "needs-improvement",
+        "good": 2500,
+        "poor": 4000,
+        "samples": 240
+      },
+      {
+        "id": "inp",
+        "name": "Interaction to Next Paint",
+        "unit": "ms",
+        "p75": 274.0,
+        "status": "needs-improvement",
+        "good": 200,
+        "poor": 500,
+        "samples": 240
+      },
+      {
+        "id": "cls",
+        "name": "Cumulative Layout Shift",
+        "unit": "",
+        "p75": 0.102,
+        "status": "needs-improvement",
+        "good": 0.1,
+        "poor": 0.25,
+        "samples": 240
+      }
+    ]
+  },
+  "anomalies": [
+    {
+      "campaign_id": 5,
+      "campaign": "Investir é Simples",
+      "date": "2026-11-03",
+      "metric": "cpl",
+      "metric_label": "Custo por lead",
+      "value": 206.2325,
+      "baseline_median": 23.2116,
+      "z": 57.42,
+      "direction": "up",
+      "impact": "bad",
+      "severity": "critical"
+    },
+    {
+      "campaign_id": 3,
+      "campaign": "Conta Digital",
+      "date": "2026-11-01",
+      "metric": "cpl",
+      "metric_label": "Custo por lead",
+      "value": 69.1407,
+      "baseline_median": 25.66,
+      "z": 11.51,
+      "direction": "up",
+      "impact": "bad",
+      "severity": "critical"
+    },
+    {
+      "campaign_id": 5,
+      "campaign": "Investir é Simples",
+      "date": "2026-11-03",
+      "metric": "lead_rate",
+      "metric_label": "Conversão clique→lead",
+      "value": 0.0132,
+      "baseline_median": 0.1007,
+      "z": -8.51,
+      "direction": "down",
+      "impact": "bad",
+      "severity": "critical"
+    },
+    {
+      "campaign_id": 3,
+      "campaign": "Conta Digital",
+      "date": "2026-11-01",
+      "metric": "lead_rate",
+      "metric_label": "Conversão clique→lead",
+      "value": 0.1321,
+      "baseline_median": 0.0787,
+      "z": 7.47,
+      "direction": "up",
+      "impact": "good",
+      "severity": "warning"
+    },
+    {
+      "campaign_id": 3,
+      "campaign": "Conta Digital",
+      "date": "2026-11-01",
+      "metric": "ctr",
+      "metric_label": "Taxa de clique",
+      "value": 0.0187,
+      "baseline_median": 0.0303,
+      "z": -4.83,
+      "direction": "down",
+      "impact": "bad",
+      "severity": "warning"
+    },
+    {
+      "campaign_id": 1,
+      "campaign": "Crédito Mais",
+      "date": "2026-10-22",
+      "metric": "lcp_ms",
+      "metric_label": "LCP",
+      "value": 3984.0,
+      "baseline_median": 2254.0,
+      "z": 4.17,
+      "direction": "up",
+      "impact": "bad",
+      "severity": "warning"
+    }
+  ],
+  "pacing": [
+    {
+      "id": 1,
+      "name": "Crédito Mais",
+      "channel": "Paid Search",
+      "state": "active",
+      "budget": 6300.0,
+      "spent_mtd": 1707.5,
+      "budget_used_pct": 27.1,
+      "expected_pct": 33.3,
+      "projected_month_end": 5122.5,
+      "status": "under"
+    },
+    {
+      "id": 2,
+      "name": "Prime Invest",
+      "channel": "Organic",
+      "state": "active",
+      "budget": 8100.0,
+      "spent_mtd": 2799.04,
+      "budget_used_pct": 34.6,
+      "expected_pct": 33.3,
+      "projected_month_end": 8397.12,
+      "status": "on_track"
+    },
+    {
+      "id": 3,
+      "name": "Conta Digital",
+      "channel": "Social",
+      "state": "active",
+      "budget": 10000.0,
+      "spent_mtd": 5151.03,
+      "budget_used_pct": 51.5,
+      "expected_pct": 33.3,
+      "projected_month_end": 15453.09,
+      "status": "over"
+    },
+    {
+      "id": 4,
+      "name": "Cartão Smart",
+      "channel": "Email",
+      "state": "active",
+      "budget": 11200.0,
+      "spent_mtd": 3828.34,
+      "budget_used_pct": 34.2,
+      "expected_pct": 33.3,
+      "projected_month_end": 11485.02,
+      "status": "on_track"
+    },
+    {
+      "id": 5,
+      "name": "Investir é Simples",
+      "channel": "Paid Search",
+      "state": "active",
+      "budget": 16300.0,
+      "spent_mtd": 5587.84,
+      "budget_used_pct": 34.3,
+      "expected_pct": 33.3,
+      "projected_month_end": 16763.52,
+      "status": "on_track"
+    },
+    {
+      "id": 6,
+      "name": "Recomeço Financeiro",
+      "channel": "Email",
+      "state": "active",
+      "budget": 27200.0,
+      "spent_mtd": 6583.04,
+      "budget_used_pct": 24.2,
+      "expected_pct": 33.3,
+      "projected_month_end": 19749.12,
+      "status": "under"
+    },
+    {
+      "id": 7,
+      "name": "Pix para Negócios",
+      "channel": "Organic",
+      "state": "active",
+      "budget": 24100.0,
+      "spent_mtd": 6723.13,
+      "budget_used_pct": 27.9,
+      "expected_pct": 33.3,
+      "projected_month_end": 20169.39,
+      "status": "under"
+    },
+    {
+      "id": 8,
+      "name": "Conquistas Planejadas",
+      "channel": "Social",
+      "state": "paused",
+      "budget": 6100.0,
+      "spent_mtd": 1842.43,
+      "budget_used_pct": 30.2,
+      "expected_pct": 33.3,
+      "projected_month_end": 5527.29,
+      "status": "paused"
+    }
+  ],
+  "experiments": [
+    {
+      "key": "hero-cta-copy",
+      "name": "Copy do CTA do hero — crédito",
+      "control": {
+        "variant": "A",
+        "visitors": 9800,
+        "conversions": 392,
+        "rate_pct": 4.0
+      },
+      "variant": {
+        "variant": "B",
+        "visitors": 9750,
+        "conversions": 468,
+        "rate_pct": 4.8
+      },
+      "lift_pct": 20.0,
+      "p_value": 0.0064,
+      "ci95_pp": [
+        0.23,
+        1.37
+      ],
+      "verdict": "winner",
+      "required_per_variant": 39475,
+      "enough_traffic": false
+    },
+    {
+      "key": "banner-layout",
+      "name": "Layout do banner do cartão",
+      "control": {
+        "variant": "A",
+        "visitors": 5200,
+        "conversions": 208,
+        "rate_pct": 4.0
+      },
+      "variant": {
+        "variant": "B",
+        "visitors": 5150,
+        "conversions": 214,
+        "rate_pct": 4.16
+      },
+      "lift_pct": 3.9,
+      "p_value": 0.6895,
+      "ci95_pp": [
+        -0.61,
+        0.92
+      ],
+      "verdict": "inconclusive",
+      "required_per_variant": 39475,
+      "enough_traffic": false
+    },
+    {
+      "key": "form-curto",
+      "name": "Formulário curto — investimentos",
+      "control": {
+        "variant": "A",
+        "visitors": 1800,
+        "conversions": 90,
+        "rate_pct": 5.0
+      },
+      "variant": {
+        "variant": "B",
+        "visitors": 1750,
+        "conversions": 103,
+        "rate_pct": 5.89
+      },
+      "lift_pct": 17.7,
+      "p_value": 0.2446,
+      "ci95_pp": [
+        -0.61,
+        2.38
+      ],
+      "verdict": "inconclusive",
+      "required_per_variant": 31234,
+      "enough_traffic": false
+    }
+  ]
+}

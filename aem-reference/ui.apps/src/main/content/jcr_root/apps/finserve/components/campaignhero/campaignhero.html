@@ -1,0 +1,9 @@
+<sly data-sly-use.model="br.com.finserve.aem.core.models.CampaignHeroModel" />
+<section class="cmp-finserve-campaignhero" aria-labelledby="hero-title-${resource.name}">
+  <div class="cmp-finserve-campaignhero__content">
+    <p class="cmp-finserve-campaignhero__eyebrow">${model.eyebrow}</p>
+    <h1 id="hero-title-${resource.name}">${model.title}</h1>
+    <p>${model.description}</p>
+    <a class="cmp-finserve-campaignhero__cta" href="${model.ctaUrl @ context='uri'}">${model.ctaLabel}</a>
+  </div>
+</section>

@@ -1,0 +1,83 @@
+# Regras de revisão editorial para comunicação de produtos financeiros — versionadas, determinísticas, com reason code.
+# Padrão herdado do Pix-Fraud-Decisioning-Lab (regras YAML + fail-safe): erro do motor => bloqueia, nunca aprova em silêncio.
+#
+# AVISO: heurísticas educacionais de higiene editorial. NÃO são parecer jurídico nem substituem a revisão de compliance
+# (a vedação a publicidade enganosa consta, por exemplo, no art. 37 do Código de Defesa do Consumidor).
+#
+# Texto e padrões são comparados em minúsculas e SEM acentos (escreva os padrões sem acento).
+# Tipos de regra:
+#   forbidden: dispara se QUALQUER padrão casar nos campos indicados.
+#   requires : dispara se algum padrão de `when_any` casar E nenhum de `unless_any` casar (ressalva ausente).
+version: "1.0.0"
+rules:
+  - id: CMP001
+    name: Promessa de retorno garantido
+    type: forbidden
+    severity: block
+    reason_code: GUARANTEED_RETURN
+    fields: [eyebrow, title, body, cta_label]
+    patterns: ['retorno garantid', 'rentabilidade garantid', 'rendimento garantid', 'ganho garantid', 'lucro (certo|garantid)', 'sem risco', 'risco zero']
+    message: "Não prometa retorno garantido ou ausência de risco."
+    suggestion: "Descreva a característica do produto e inclua a ressalva de que rentabilidade passada não garante resultado futuro."
+
+  - id: CMP002
+    name: Aprovação de crédito garantida ou irrestrita
+    type: forbidden
+    severity: block
+    reason_code: GUARANTEED_APPROVAL
+    fields: [eyebrow, title, body, cta_label]
+    patterns: ['aprovacao (imediata|garantida|certa)', '100% aprovad', 'credito (garantido|aprovado para todos)', 'sem consulta ao (spc|serasa)', 'sem analise de credito']
+    message: "Não afirme aprovação garantida; crédito depende de análise."
+    suggestion: "Use 'simule e conheça as condições, sujeitas à análise de crédito'."
+
+  - id: CMP003
+    name: Dado pessoal em conteúdo público
+    type: forbidden
+    severity: block
+    reason_code: PII_IN_PUBLIC_CONTENT
+    fields: [eyebrow, title, body, cta_label, cta_url]
+    patterns: ['\b\d{3}\.?\d{3}\.?\d{3}-?\d{2}\b', '[\w.+-]+@[\w-]+\.[\w.-]+', '\(?\d{2}\)?\s?9?\d{4}-?\d{4}\b']
+    message: "Conteúdo público não pode conter CPF, e-mail ou telefone."
+    suggestion: "Remova o dado pessoal; use canais oficiais de atendimento."
+
+  - id: CMP004
+    name: Pressão por urgência
+    type: forbidden
+    severity: warn
+    reason_code: URGENCY_PRESSURE
+    fields: [eyebrow, title, body, cta_label]
+    patterns: ['so hoje', 'ultimas (vagas|unidades)', '\bcorra\b', 'nao perca', 'ultima chance', 'oferta imperdivel']
+    message: "Linguagem de urgência pode induzir decisão financeira impulsiva."
+    suggestion: "Prefira informação clara de prazo real da condição, se houver."
+
+  - id: CMP005
+    name: Superlativo absoluto sem comprovação
+    type: forbidden
+    severity: warn
+    reason_code: UNSUBSTANTIATED_SUPERLATIVE
+    fields: [eyebrow, title, body]
+    patterns: ['\bo melhor\b', '\ba melhor\b', '\bo maior\b', '\ba maior\b', '\bunico\b', '\bunica\b', 'numero 1', 'imbativel']
+    message: "Superlativos absolutos exigem comprovação documentada."
+    suggestion: "Troque por um atributo verificável do produto."
+
+  - id: CMP006
+    name: Rentabilidade sem ressalva
+    type: requires
+    severity: warn
+    reason_code: RETURN_WITHOUT_DISCLAIMER
+    fields: [title, body]
+    when_any: ['rentabilidade', '\brende\b', 'rendimento', '\bretorno\b']
+    unless_any: ['nao ha garantia', 'sujeit', 'simulacao', 'rentabilidade passada', 'ilustrativ', 'referencia de mercado', 'fonte:']
+    message: "Menção a rentabilidade sem ressalva ou fonte."
+    suggestion: "Inclua 'rentabilidade passada não garante resultado futuro' ou cite a fonte do dado."
+
+  - id: CMP007
+    name: Taxa de juros sem custo efetivo total
+    type: requires
+    severity: warn
+    reason_code: RATE_WITHOUT_CET
+    fields: [title, body]
+    when_any: ['juros', '\d+([.,]\d+)?\s?%\s?(a\.m|ao mes|a\.a|ao ano)']
+    unless_any: ['\bcet\b', 'custo efetivo total', 'simul', 'ilustrativ']
+    message: "Taxa de juros divulgada sem referência ao CET."
+    suggestion: "Informe o CET ou direcione para uma simulação com todas as condições."

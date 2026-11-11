@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" jcr:primaryType="cq:Component"
+  jcr:title="FinServe Campaign Hero" componentGroup="FinServe - Financial" sling:resourceSuperType="core/wcm/components/container/v1/container" />

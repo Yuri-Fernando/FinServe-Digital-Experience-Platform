@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+  jcr:primaryType="nt:unstructured" jcr:title="FinServe Campaign Hero" sling:resourceType="cq/gui/components/authoring/dialog">
+  <content jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/coral/foundation/container">
+    <items jcr:primaryType="nt:unstructured">
+      <columns jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+        <items jcr:primaryType="nt:unstructured">
+          <column jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/coral/foundation/container">
+            <items jcr:primaryType="nt:unstructured">
+              <eyebrow jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/coral/foundation/form/textfield" fieldLabel="Chamada curta" name="./eyebrow"/>
+              <title jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/coral/foundation/form/textfield" fieldLabel="Título" name="./title" required="{Boolean}true"/>
+              <description jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/coral/foundation/form/textarea" fieldLabel="Descrição" name="./description"/>
+              <ctaLabel jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/coral/foundation/form/textfield" fieldLabel="Botão" name="./ctaLabel"/>
+              <ctaUrl jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/coral/foundation/form/pathfield" fieldLabel="Página de destino" rootPath="/content/finserve" name="./ctaUrl"/>
+              <segment jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/coral/foundation/form/select" fieldLabel="Segmento" name="./segment">
+                <items jcr:primaryType="nt:unstructured">
+                  <all jcr:primaryType="nt:unstructured" text="Todos" value="all"/>
+                  <investidor jcr:primaryType="nt:unstructured" text="Investidor" value="investidor"/>
+                  <credito jcr:primaryType="nt:unstructured" text="Crédito" value="credito"/>
+                  <jovem jcr:primaryType="nt:unstructured" text="Jovem" value="jovem"/>
+                </items>
+              </segment>
+            </items>
+          </column>
+        </items>
+      </columns>
+    </items>
+  </content>
+</jcr:root>
