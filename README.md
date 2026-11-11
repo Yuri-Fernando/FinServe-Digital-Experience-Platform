@@ -16,7 +16,7 @@
 
 ## 🟡 Status — MVP técnico funcional (v2.0.0)
 
-🟡 **MVP técnico funcional — núcleo validado: 114 testes automatizados passando (sem rede), 17/17 verificações de navegador com Playwright e relatório de referência reproduzível com dados reais do Banco Central coletados em 2026-11-10.** Backend modular, dashkit, Content Studio com compliance, simuladores e snapshots rodam de ponta a ponta localmente. Pendências: CI no GitHub em execução recorrente, ambientes Linux/macOS verificados localmente e qualquer validação em AEM real.
+🟡 **MVP técnico funcional — núcleo validado: 114 testes automatizados passando (sem rede), 17/17 verificações de navegador com Playwright e relatório de referência reproduzível com dados reais do Banco Central coletados em 2026-11-10.** Backend modular, dashkit, Content Studio com compliance, simuladores e snapshots rodam de ponta a ponta localmente. O CI do GitHub passou nos 5 jobs (Ubuntu e Windows × Python 3.10/3.12 + sintaxe do front) no primeiro run. Pendências: E2E e Docker no CI, macOS e qualquer validação em AEM real.
 
 | Área | Estado | Evidência |
 |---|---|---|
@@ -27,8 +27,8 @@
 | Content Studio + compliance YAML + entrega headless | ✅ implementado e testado | [`tests/test_experience.py`](tests/test_experience.py) |
 | Front (dashkit, Studio, Portal, mobile) | ✅ validado em Chromium (E2E manual, fora do CI) | [`scripts/e2e_browser.py`](scripts/e2e_browser.py) |
 | Relatório de referência | ✅ reproduzível por comando | [`reports/report.md`](reports/report.md), [`reports/metrics.json`](reports/metrics.json) |
-| CI (Ubuntu + Windows, Python 3.10/3.12) | 🟡 configurado; ver badge acima | [`.github/workflows/ci.yml`](.github/workflows/ci.yml) |
-| Linux / macOS local | ⏳ **não verificado** fora do CI (desenvolvido em Windows 11, Python 3.10.8) | — |
+| CI (Ubuntu + Windows, Python 3.10/3.12) | ✅ verde nos 5 jobs no primeiro run (2026-11-11) | [`.github/workflows/ci.yml`](.github/workflows/ci.yml) |
+| Linux · macOS | ✅ Linux via CI (Ubuntu) · ⏳ macOS **não verificado** | CI |
 | Adobe AEM (SDK, Cloud Manager, Dispatcher) | ⛔ **não executado** — apenas código de referência | [`aem-reference/`](aem-reference/), [`docs/ROADMAP_AEM.md`](docs/ROADMAP_AEM.md) |
 | Estatísticas Pix do BCB | ⏳ não integrado (consulta expirou na verificação) | [ADR 0003](docs/adr/0003-dados-reais-snapshot-proveniencia.md) |
 
@@ -409,8 +409,8 @@ python -m finserve new-module cartoes            # cria um módulo novo + teste
 | Ambiente | Estado |
 |---|---|
 | Windows 11 + Python 3.10.8 (Git Bash) | ✅ verificado nesta revisão |
-| CI: Ubuntu e Windows, Python 3.10 e 3.12 | ver badge no topo |
-| PowerShell, Linux/macOS locais | **não verificados** nesta revisão |
+| CI: Ubuntu e Windows, Python 3.10 e 3.12 | ✅ verde (5 jobs) em 2026-11-11 |
+| PowerShell local, macOS | **não verificados** nesta revisão |
 | `pip install -e .` e o comando `finserve` | declarados no `pyproject.toml`, **não verificados** |
 | Docker | não incluído (planejado na v2.1) |
 
@@ -472,7 +472,7 @@ Não versionado (ver [`.gitignore`](.gitignore)): bancos `*.sqlite3`, caches Pyt
 - **Estatística:** o detector não modela sazonalidade semanal; o experimento “vencedor” tem amostra menor que a planejada.
 - **Front:** sem zoom/seleção de intervalo; gráficos não se redesenham ao redimensionar a janela (o SVG apenas escala).
 - **Concorrência:** SQLite sem WAL, uso single-user.
-- **Não verificado nesta revisão:** Linux/macOS e PowerShell locais, instalação editável, navegadores além do Chromium.
+- **Não verificado nesta revisão:** macOS, PowerShell local, instalação editável, navegadores além do Chromium.
 
 ## Status
 
